@@ -1,0 +1,67 @@
+# ###########################################################################
+# Copyright: 2013 iCub Facility, Istituto Italiano di Tecnologia
+# Author: Francesco Giovannini
+# CopyPolicy: Released under the terms of the GNU GPL v2.0.
+# ###########################################################################
+
+# ###########################################################################
+# ###########################################################################
+# CMake FIND file for the proprietary NIDAQmx Linux library (NIDAQmxBase).
+# 
+# Try to find NIDAQmxBase
+# Once done this will define
+#   LIBNIDAQMXBASE_FOUND - System has NIDAQmxBase
+#   LIBNIDAQMXBASE_INCLUDE_DIRS - The NIDAQmxBase include directories
+#   LIBNIDAQMXBASE_LIBRARIES - The libraries needed to use NIDAQmxBase
+# ###########################################################################
+# ###########################################################################
+
+# ###########################################################################
+# Useful variables
+set(MIN_LIBNIDAQMXBASE_VERSION 8.4)
+
+# Find installed library using PkgConfig
+find_package(PkgConfig)
+pkg_check_modules(PC_LIBNIDAQMXBASE REQUIRED libnidaqmxbase)
+set(LIBNIDAQMXBASE_DEFINITIONS ${PC_LIBNIDAQMXBASE_CFLAGS_OTHER})
+
+if(PC_LIBNIDAQMXBASE)
+    MESSAGE(STATUS "NIDAQmxBase library found.")
+    
+    if("${PACKAGE_FIND_VERSION}" LESS "${MIN_LIBNIDAQMXBASE_VERSION}")
+        MESSAGE(STATUS "NIDAQmxBase library version (${PACKAGE_FIND_VERSION}) is < ${MIN_LIBNIDAQMXBASE_VERSION}")
+    else("${PACKAGE_FIND_VERSION}" LESS "${MIN_LIBNIDAQMXBASE_VERSION}")
+
+        # Find include files
+        find_path(LIBNIDAQMXBASE_INCLUDE_DIR 
+            NAMES include/NIDAQmxBase.h)
+
+        # Find library files
+        find_library(LIBNIDAQMXBASE_LIBRARY 
+            NAMES libnidaqmxbase)
+
+        
+        # Set variables
+        if(LIBNIDAQMXBASE_LIBRARIES AND LIBNIDAQMXBASE_INCLUDE_DIRS)
+            set(LIBNIDAQMXBASE_LIBRARIES ${PC_LIBNIDAQMXBASE_LIBRARY} CACHE PATH "NIDAQmxBase library")
+            set(LIBNIDAQMXBASE_INCLUDE_DIRS ${PC_LIBNIDAQMXBASE_INCLUDE_DIR} CACHE STRING "NIDAQmxBase include directory")
+        else(LIBNIDAQMXBASE_LIBRARIES AND LIBNIDAQMXBASE_INCLUDE_DIRS)
+            MESSAGE(FATAL_ERROR "Could not find the NIDAQmxBase library.")
+        endif(LIBNIDAQMXBASE_LIBRARIES AND LIBNIDAQMXBASE_INCLUDE_DIRS)
+
+        # Handle the QUIETLY and REQUIRED arguments and set LIBNIDAQMXBASE_FOUND to TRUE if all listed variables are TRUE
+        include(FindPackageHandleStandardArgs)
+        find_package_handle_standard_args(libnidaqmxbase  DEFAULT_MSG
+                                          LIBNIDAQMXBASE_LIBRARY LIBNIDAQMXBASE_INCLUDE_DIR)
+    endif("${PACKAGE_FIND_VERSION}" LESS "${MIN_LIBNIDAQMXBASE_VERSION}")
+
+elseif(PC_LIBNIDAQMXBASE)
+    MESSAGE(STATUS "Could not find the NIDAQmxBase library.")
+endif(PC_LIBNIDAQMXBASE)
+# ###########################################################################
+
+    
+# ###########################################################################
+# Mark as done
+mark_as_advanced(LIBNIDAQMXBASE_INCLUDE_DIR LIBNIDAQMXBASE_LIBRARY)
+# ###########################################################################
