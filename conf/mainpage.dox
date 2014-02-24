@@ -1,0 +1,10 @@
+/**
+ * \brief The iCub NIDAQmx project contains an iCub module which acquires sensors that are not embodied on the iCub robot using National Instruments DAQ cards.
+ * \author Francesco Giovannini (francesco.giovannini@iit.it)
+ * \file
+ */
+ 
+/**
+ * \mainpage iCub NIDAQmx Documentation
+ * This is the iCub NIDAQmx project documentation resulting from automatic parsing of doxygen comments in the code.
+ */
