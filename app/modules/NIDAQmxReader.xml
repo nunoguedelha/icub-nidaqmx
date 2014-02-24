@@ -1,0 +1,70 @@
+<module>
+    <name>NIDAQmxReader</name>
+    <description>The NIDAQmxReader is a module which acquires data from a National Instruments data acquisition (DAQ) card and outputs it on two YARP ports.</description>
+    <version>1.0</version>
+
+
+    <authors>
+        <author email="francesco.giovannini@iit.it"> Francesco Giovannini </author>
+    </authors>
+
+
+    <arguments>
+        <!-- Module configuration -->
+        <param default="NIDAQmxReader" desc="The module name."> name </param>
+        <param default="0.001" desc="The module period in seconds."> period </param>
+        <param default="icub" desc="The robot on which the module will run."> robot </param>
+        
+        <!-- DAQ Task configuration -->
+        <param default="" desc="The DAQ device name."> deviceName </param>
+        <param default="" desc="The DAQ task name."> taskName </param>
+        <param default="" desc="The physical channels to sample."> channels </param>
+        <param default="" desc="The physical channel type - (see http://zone.ni.com/reference/en-XX/help/370471W-01/TOC8.htm)."> channelType </param>
+        <param default="" desc="The terminal configuration mode for each channel - (see http://zone.ni.com/reference/en-XX/help/370466V-01/measfunds/connectaisigs/)."> terminalConfig </param>
+        <param default="" desc="The minimum values to be read for each channel."> minVals </param>
+        <param default="" desc="The maximum values to be read for each channel."> maxVals </param>
+        
+        <param default="1000" desc="The number of samples to read per channel."> samplesPerChannel </param>
+        <param default="5000" desc="The sampling rate in Hz."> samplingRate </param>
+        <param default="10" desc="The sampling timeout in ms."> timeout </param>
+        <param default="100000" desc="The sampling buffer size."> bufferSize </param>
+        
+        <!-- Sensor Calibration -->
+        <param default="" desc="The calibration scales."> scales </param>
+        <param default="" desc="The calibration matrix."> calibMatrix </param>
+    </arguments>
+
+
+     <data>
+        <output>
+            <type>yarp::sig::Vector</type>
+            <port carrier="tcp">/NIDAQmxReader/data/analog:o</port>
+            <description>This port outputs the analog sensor values (Volts, Amps, etc).</description>
+        </output>
+        
+        <output>
+            <type>yarp::sig::Vector</type>
+            <port carrier="tcp">/NIDAQmxReader/data/real:o</port>
+            <description>This port outputs the real sensor values (Newtons, Newton millimeters, etc).</description>
+        </output>
+    </data>
+
+
+    <dependencies>
+        <computer>
+            <platform>
+                <name>Linux</name>
+                <distribution>open SUSE</distribution>
+                <release>12.2</release>
+            </platform>
+        </computer>
+    </dependencies>
+
+
+    <development>
+        <header>NIDAQmxTask</header>
+        <library>NIDAQmxTask</library>
+    </development>
+
+</module>
+
