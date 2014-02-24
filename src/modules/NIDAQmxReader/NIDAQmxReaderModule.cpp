@@ -70,7 +70,7 @@ bool NIDAQmxReaderModule::configure(yarp::os::ResourceFinder &rf) {
     portNIDAQmxReaderOutReal.open("/NIDAQmxReader/data/real:o");
     
     // DAQ task attributes
-    int DAQNChannels;
+    size_t DAQNChannels;
     Bottle &DAQTaskConf = rf.findGroup("DAQTask");
     if (!DAQTaskConf.isNull()) {
         // DAQ device name
@@ -101,7 +101,7 @@ bool NIDAQmxReaderModule::configure(yarp::os::ResourceFinder &rf) {
                 DAQTaskConfig.DAQMinVals = vector<double>(DAQNChannels);
                 DAQTaskConfig.DAQMaxVals = vector<double>(DAQNChannels);
                 // Fill vector values from ini file
-                for (size_t i = 0; i < DAQChannelsList->size(); ++i) {
+                for (int i = 0; i < DAQChannelsList->size(); ++i) {
                     DAQTaskConfig.DAQChannels[i] = DAQChannelsList->get(i).asString();
                     DAQTaskConfig.DAQChannelTypes[i] = DAQChannelTypesList->get(i).asString();
                     DAQTaskConfig.DAQTerminalConfig[i] = DAQTerminalConfigList->get(i).asString();
@@ -243,7 +243,7 @@ bool NIDAQmxReaderModule::updateModule() {
                 outAnalog.clear();
                 outReal.clear();
 
-                for (size_t j = 0; j < nChannels; ++j) {
+                for (int j = 0; j < nChannels; ++j) {
                     outAnalog.push_back(res.analogValues[nChannels*i+j]);
                     outReal.push_back(res.realValues[nChannels*i+j]);
                 }

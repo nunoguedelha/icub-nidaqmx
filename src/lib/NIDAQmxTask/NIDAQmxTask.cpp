@@ -211,7 +211,7 @@ bool NIDAQmxTask::createDAQChannels(void) {
     int terminalConfig;
 
     // TODO: Change this to construct channel depending on channel type
-    for (int i = 0; i < DAQTaskConfig.getDAQChannels().size(); ++i) {
+    for (size_t i = 0; i < DAQTaskConfig.getDAQChannels().size(); ++i) {
         channelName.str(std::string());     // Clear stringstream
         channelName << DAQDeviceName << "/" << DAQTaskConfig.getDAQChannels()[i];      // Construct the channel name
         cout << "NIDAQmxTask: Creating DAQ channel - " << channelName.str()  << ". \n";
@@ -344,9 +344,9 @@ bool NIDAQmxTask::computeSensorValues(std::vector<double> &i_analog, std::vector
     o_real.resize(i_analog.size(), 0.0);
 
     // Matrix multiply samples x calibrationMatrix
-    int DAQNChannels = DAQTaskConfig.getDAQChannels().size();
+    size_t DAQNChannels = DAQTaskConfig.getDAQChannels().size();
 
-    int samp = 0;
+    size_t samp = 0;
     while (samp < i_analog.size()) {    // Loop all samples
         // Multiply calibration matrix
         for (size_t i = 0; i < DAQNChannels; ++i) {    // Loop rows
