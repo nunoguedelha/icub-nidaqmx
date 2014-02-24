@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<portscope rows="2" columns="2" carrier="mcast">
+<!-- ****************************************************************************************************************** -->
+<!-- ******************************************************************************** -->
+<!-- ** FT Values                                                                   -->
+    <!-- Analog values-->
+    <plot gridx="0" gridy="0" hspan="2" vspan="2"
+          title="Nano17 Analog"
+          size="60" minval="-5" maxval="5"
+          bgcolor="LightSlateGrey">
+        <graph remote="/NIDAQmxReader/data/analog:o" index="0"
+               color="#0000FF" title="Raw values" size="2" type="lines" />
+        <graph remote="/NIDAQmxReader/data/analog:o" index="1"
+               color="#FF0000" title="Raw values" size="2" type="lines" />
+        <graph remote="/NIDAQmxReader/data/analog:o" index="2"
+               color="#FF6E00" title="Raw values" size="2" type="lines" />
+        <graph remote="/NIDAQmxReader/data/analog:o" index="3"
+               color="#FFD800" title="Raw values" size="2" type="lines" />
+        <graph remote="/NIDAQmxReader/data/analog:o" index="4"
+               color="#6EF400" title="Raw values" size="2" type="lines" />
+        <graph remote="/NIDAQmxReader/data/analog:o" index="5"
+               color="#0E8C00" title="Raw values" size="2" type="lines" />
+    </plot>
+
+    <plot gridx="0" gridy="2" hspan="2" vspan="2"
+          title="Nano17 Force/Torque"
+          size="60" minval="-5" maxval="5"
+          bgcolor="LightSlateGrey">
+<!--        <graph remote="/NIDAQmxReader/data/real:o" index="0"
+               color="#0000FF" title="Raw values" size="2" type="lines" />
+        <graph remote="/NIDAQmxReader/data/real:o" index="1"
+               color="#FF0000" title="Raw values" size="2" type="lines" />
+        <graph remote="/NIDAQmxReader/data/real:o" index="2"
+               color="#FF6E00" title="Raw values" size="2" type="lines" />
+        <graph remote="/NIDAQmxReader/data/real:o" index="3"
+               color="#FFD800" title="Raw values" size="2" type="lines" />
+        <graph remote="/NIDAQmxReader/data/real:o" index="4"
+               color="#6EF400" title="Raw values" size="2" type="lines" />
+        <graph remote="/NIDAQmxReader/data/real:o" index="5"
+               color="#0E8C00" title="Raw values" size="2" type="lines" /> -->
+
+        <graph remote="/NIDAQmxReader/data/real:o" index="2"
+               color="#FF6E00" title="Raw values" size="2" type="lines" />
+        <graph remote="/NIDAQmxReader/data/real:o" index="5"
+               color="#0E8C00" title="Raw values" size="2" type="lines" />
+    </plot>
+<!-- ******************************************************************************** -->
+<!-- ****************************************************************************************************************** -->
+</portscope>
