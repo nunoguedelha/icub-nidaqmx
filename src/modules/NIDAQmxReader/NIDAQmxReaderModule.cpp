@@ -323,6 +323,8 @@ bool NIDAQmxReaderModule::respond(const Bottle &command, Bottle &reply) {
 /* *********************************************************************************************************************** */
 /* ******* Delete allocated memory.                                         ********************************************** */
 void NIDAQmxReaderModule::freeMemory(void) {
-    delete DAQTask;
+    if (DAQTask) {
+        delete DAQTask;
+    }
 }
 /* *********************************************************************************************************************** */
