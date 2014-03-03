@@ -102,7 +102,7 @@
 
 #include <yarp/os/RFModule.h>
 #include <yarp/os/BufferedPort.h>
-#include <yarp/os/Semaphore.h>
+#include <yarp/os/Stamp.h>
 #include <yarp/sig/Vector.h>
 
 #include <NIDAQmxTask/include/NIDAQmxTask.h>
@@ -128,7 +128,6 @@ class NIDAQmxReaderModule : public yarp::os::RFModule {
          */
         std::string robotName;
 
-        yarp::os::Semaphore mutex;
 
         /* ******* DAQ task config object                        ******* */
         /**
@@ -144,8 +143,20 @@ class NIDAQmxReaderModule : public yarp::os::RFModule {
         nidaqmx::NIDAQmxTask *DAQTask;
         
         /* ****** Ports                                         ****** */
+        /** 
+         * Output port for sensor analog values. 
+         */
         yarp::os::BufferedPort<yarp::sig::Vector> portNIDAQmxReaderOutAnalog;
+
+        /** 
+         * Output port for sensor real values.
+         */
         yarp::os::BufferedPort<yarp::sig::Vector> portNIDAQmxReaderOutReal;
+
+        /** 
+         * The port timestamp. 
+         */
+        yarp::os::Stamp portStamp;
 
         /* ****** Debug attributes                              ****** */
         std::string dbgTag;

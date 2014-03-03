@@ -228,7 +228,7 @@ bool NIDAQmxReaderModule::updateModule() {
     /* ******* Initialise the DAQ Task.                         ******* */
     NIDAQmxResults res;
     if (DAQTask->runDAQTask(res)) {
-		if (res.analogValues.size() > 0) {
+        if (res.analogValues.size() > 0) {
             // Output data on port
             int nChannels = DAQTaskConfig.DAQChannels.size();
             int samplesPerChannel = DAQTaskConfig.DAQSamplesPerChannel;
@@ -236,7 +236,8 @@ bool NIDAQmxReaderModule::updateModule() {
 
             //for (size_t i = 0; i < samplesPerChannel; ++i) {
             for (size_t i = 0; i < res.analogValues.size() / nChannels; ++i) {
-                mutex.wait();
+                // Store timestamp
+                portStamp.update();
 
                 Vector &outAnalog = portNIDAQmxReaderOutAnalog.prepare();
                 Vector &outReal = portNIDAQmxReaderOutReal.prepare();
@@ -248,12 +249,15 @@ bool NIDAQmxReaderModule::updateModule() {
                     outReal.push_back(res.realValues[nChannels*i+j]);
                 }
 
+                // Attach timestamp
+                portNIDAQmxReaderOutAnalog.setEnvelope(portStamp);
+                portNIDAQmxReaderOutReal.setEnvelope(portStamp);
+
+                // Write data
                 portNIDAQmxReaderOutAnalog.write();
                 portNIDAQmxReaderOutReal.write();
-
-                mutex.post();
             }
-		}
+        }
     } else {        // Could not run task, close module
         std::cerr << dbgTag << "Error: Could not run the DAQ Task. \n";
 
