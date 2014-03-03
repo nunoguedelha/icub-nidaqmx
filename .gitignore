@@ -13,7 +13,7 @@
 *.a
 
 # Documentation directory
-docs
+docs/
 
 # Build directory
-build 
+build/
