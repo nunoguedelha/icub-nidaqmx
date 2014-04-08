@@ -30,7 +30,7 @@
  *
  * Below is a block diagram showing the architecture of a NIDAQmx system:
  * \image html DAQSystemArch.png "NIDAQmx System architecture."
- * \image latex DAQSystemArch.pdf "NIDAQmx System architecture."
+ * \image latex DAQSystemArch.pdf "NIDAQmx System architecture." width=6cm
  *
  * 
  * \section lib_sec Libraries
