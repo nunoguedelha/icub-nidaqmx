@@ -28,6 +28,10 @@
  * This module relies on the NIDAQmxTask C++ wrapper for the National Instruments proprietary NIDAQmx library.
  * It invokes the API methods defined in the NIDAQmxTask API to initialise, run, stop and clear DAQ tasks.
  *
+ * Below is a block diagram showing the architecture of a NIDAQmx system:
+ * \image html DAQSystemArch.png "NIDAQmx System architecture."
+ * \image latex DAQSystemArch.pdf "NIDAQmx System architecture."
+ *
  * 
  * \section lib_sec Libraries
  * The NIDAQmxReader depends on standard YARP libraries.
