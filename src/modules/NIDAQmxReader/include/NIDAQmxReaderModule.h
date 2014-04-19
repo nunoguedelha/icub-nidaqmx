@@ -33,6 +33,33 @@
  * \image latex DAQSystemArch.pdf "NIDAQmx System architecture." width=6cm
  *
  * 
+ * \section conf_file_sec Configuration Files
+ * The DAQ task configuration is fairly cumbersome and requires many parameters.
+ * The NIDAQmxReader therefore takes a mandatory configuration file <b>confNIDAQmxReader.ini</b> which must be placed in its context (NIDAQmxReader).
+ * The module will not run if the configuration file does not exist.
+ * This is because it would be impossible to define default parameters for the DAQ task.
+ * This file defines all the afore-mentioned parameters and can be modified to suit your needs.
+ *
+ *
+ * \section calibmatrix_sec Calibration Matrix and Scales
+ * Remember to update the <b>confNIDAQmxReader.ini</b> file with the calibration matrix and scale that belong to the sensor you are using.
+ * This calibration data is <b>unique</b> to each sensor.
+ * Acquiring data from a sensor configured using calibration data from another sensor will inevitably result into meaningless, wrong data.
+ *
+ * 
+ * \section sampling_sec Sampling Explained
+ * The module launches a DAQ task with the given sampling rate <i>samplingRate</i>.
+ * Once started, the task fills a circular buffer of size <i>bufferSize</i> with the acquired samples.
+ * Every <i>period</i> seconds, the module reads a finite number of samples <i>samplesPerChannel</i> from the buffer thus freeing space for more samples to be acquired.
+ * If the buffer contains less than <i>samplesPerChannel</i> samples then all available samples are read.
+ * These samples are output on the respective YARP ports.
+ *
+ * The module configuration therefore requires a fine tuning of the following parameters:
+ *     - <i>period</i>
+ *     - <i>samplingRate</i>
+ *     - <i>samplesPerChannel</i>
+ *
+ * 
  * \section lib_sec Libraries
  * The NIDAQmxReader depends on standard YARP libraries.
  * 
@@ -70,14 +97,6 @@
  *     - /NIDAQmxReader/data/analog:o [yarp::sig::Vector]  [default carrier:tcp]: This port outputs the analog sensor values (Volts, Amps, etc).
  *     - /NIDAQmxReader/data/real:o [yarp::sig::Vector]  [default carrier:tcp]: This port outputs the real sensor values (Newtons, Newton millimeters, etc).
  * 
- * 
- * \section conf_file_sec Configuration Files
- * The DAQ task configuration is fairly cumbersome and requires many parameters.
- * The NIDAQmxReader therefore takes a mandatory configuration file confNIDAQmxReader.ini which must be placed in its context (NIDAQmxReader).
- * The module will not run if the configuration file does not exist.
- * This is because it would be impossible to define default parameters for the DAQ task.
- * This file defines all the afore-mentioned parameters and can be modified to suit your needs.
- *
  * 
  * \section supported_daq_cards Supported National Instruments DAQ cards
  * This module supports all the DAQ cards which are supported by the installed NIDAQmx (or NIDAQmxBase) library.
