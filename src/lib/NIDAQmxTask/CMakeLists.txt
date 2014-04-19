@@ -20,7 +20,7 @@ project(${LIBNAME})
 # NIDAQmx Includes
 # ###########################################################################
 # Set package directory
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/../cmake/Modules/")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
 # Check for required library
 if(WIN32)
