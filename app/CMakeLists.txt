@@ -4,13 +4,13 @@
 # 
 
 # Search for application files
-set(APP_SCRIPTS 
-    ${CMAKE_CURRENT_SOURCE_DIR}/applications/Nano17PortScope.xml.template
-    ${CMAKE_CURRENT_SOURCE_DIR}/applications/Nano17PortScopeConf.xml
-)
+set(APP_SCRIPTS ${CMAKE_CURRENT_SOURCE_DIR}/applications/Nano17PortScope.xml.template)
 
 # Search for ini files
-set(APP_CONF ${CMAKE_CURRENT_SOURCE_DIR}/contexts/${PROJECTNAME}/conf${PROJECTNAME}.ini)
+list(APPEND APP_CONF ${CMAKE_CURRENT_SOURCE_DIR}/contexts/${PROJECTNAME}/conf${PROJECTNAME}.ini)
+# Search for yarpscope xml files
+file(GLOB YARPSCOPE_CONF ${CMAKE_CURRENT_SOURCE_DIR}/contexts/${PROJECTNAME}/*Conf.xml)
+list(APPEND APP_CONF ${YARPSCOPE_CONF})
 
 # Search for module descriptor files
 set(APP_MODULES ${CMAKE_CURRENT_SOURCE_DIR}/modules/${PROJECTNAME}.xml)

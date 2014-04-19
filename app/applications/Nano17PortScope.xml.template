@@ -12,7 +12,7 @@
     <module>
         <name>yarpscope</name>
         <node>icub14</node>
-        <parameters>--xml Nano17PortScopeConf.xml</parameters>
+        <parameters>--context NIDAQmxReader --xml Nano17PortScopeConf.xml</parameters>
         <workdir>/var/usr/fg/fgicub/iCub/NIDAQmx/app/NIDAQmxReader/</workdir>
         <tag>Nano17 Port Scope</tag>
     </module>
