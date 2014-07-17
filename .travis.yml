@@ -9,7 +9,7 @@ compiler:
 
 env:
     global:
-        - secure: "A6KrBr8rkdpmD2G11pvOXwuw92V5pnSwXS9zINcn6AyTMzoPyW2i6yLZvwzTYI1u2kxgj2yuaR47zIr7MlGEDMqJc7S/k7JxHHCE20n6bmXsqte2brJirdz4CHDOAQIX9ODWq7qOS+YKHRZPWRu6K16RmQAdnFOnB04XuMo0U9Y="
+        - secure: "F2HBr2aEF58l0cGR3E4FJ6loeklhxPtGjkJNQM4r02No21LyrSeoBmPdUUOu/ZfPbuyPRz28PbNQkoCJFucBFo/9MjZ/Jpld/WWrJyP5QG1hjcJbW5r+UpodG6WYIES8IqG/2iYMaCXFsLK8hfpPO5x1i8vdQX5vHbfMFNub1Sc="
     matrix:
         - TRAVIS_BUILD_TYPE=Debug
         - TRAVIS_BUILD_TYPE=Release
