@@ -41,7 +41,8 @@ install:
 
     # Install NIDAQmx library
     - cd $PROJ_ROOT
-    - .travis/copy-nidaqmx-to-root.sh
+    - chmod -R 744 .nidaqmx/copy-nidaqmx-to-root.sh
+    - .nidaqmx/copy-nidaqmx-to-root.sh
 
     # Install doxygen
 #    - sudo apt-get --force-yes install doxygen
