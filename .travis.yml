@@ -39,6 +39,10 @@ install:
     - sudo make install
     - cd $TRAV_ROOT
 
+    # Install NIDAQmx library
+    - cd $PROJ_ROOT
+    - .travis/copy-nidaqmx-to-root.sh
+
     # Install doxygen
 #    - sudo apt-get --force-yes install doxygen
     -  wget http://mirrors.kernel.org/ubuntu/pool/main/d/doxygen/doxygen_1.8.4-1_amd64.deb
