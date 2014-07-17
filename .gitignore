@@ -12,8 +12,5 @@
 *.la
 *.a
 
-# Documentation directory
-doc/
-
 # Build directory
 build/
