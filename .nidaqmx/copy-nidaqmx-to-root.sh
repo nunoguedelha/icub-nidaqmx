@@ -4,7 +4,12 @@
 echo -e "Copying library and header files to system root. \n"
 
 cd $PROJ_ROOT
-sudo cp -R ./nidaqmx/usr /
+ls -al
+sudo cp -R ./.nidaqmx/usr /
+if [ $? -gt 0 ]; then
+    echo ERROR
+    exit 1
+fi
 
 ls -al /usr/local/lib/
 ls -al /usr/local/include/
