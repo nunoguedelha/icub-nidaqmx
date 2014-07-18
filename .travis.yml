@@ -58,13 +58,13 @@ before_script:
     - cmake .. -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE}
 
 script:
-#    # Build project
-#    - make
-#    - sudo make install
+    # Build project
+    - make
+    - sudo make install
 
     # Create doxygen documentation
     - cd $PROJ_ROOT
-    - doxygen conf/Doxyfile
+    - doxygen conf/Doxyfile > /dev/null
 
 after_success:
     # Publish doxygen documentation
