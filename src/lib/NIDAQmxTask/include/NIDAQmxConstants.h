@@ -1,8 +1,8 @@
-/* 
+/*
  * Copyright (C) 2013 Francesco Giovannini, iCub Facility - Istituto Italiano di Tecnologia
  * Authors: Francesco Giovannini
  * email:   francesco.giovannini@iit.it
- * website: www.robotcub.org 
+ * website: www.robotcub.org
  * Permission is granted to copy, distribute, and/or modify this program
  * under the terms of the GNU General Public License, version 2 or any
  * later version published by the Free Software Foundation.
@@ -17,7 +17,6 @@
  */
 
 /**
-* \defgroup icub_data_acquisition Data Acquisition 
 * @ingroup icub_data_acquisition
 */
 
@@ -29,7 +28,7 @@
 #ifndef __NIDAQMXCONSTANTS_H__
 #define __NIDAQMXCONSTANTS_H__
 
-#ifdef __linux__ 
+#ifdef __linux__
     #include <NIDAQmxBase.h>
 #elif _WIN32
     #include <NIDAQmx.h>

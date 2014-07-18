@@ -1,8 +1,8 @@
-/*`` 
+/*``
  * Copyright (C) 2013 Francesco Giovannini, iCub Facility - Istituto Italiano di Tecnologia
  * Authors: Francesco Giovannini
  * email:   francesco.giovannini@iit.it
- * website: www.robotcub.org 
+ * website: www.robotcub.org
  * Permission is granted to copy, distribute, and/or modify this program
  * under the terms of the GNU General Public License, version 2 or any
  * later version published by the Free Software Foundation.
@@ -19,7 +19,6 @@
 
 
 /**
-* \defgroup icub_data_acquisition Data Acquisition 
 * @ingroup icub_data_acquisition
 */
 
@@ -50,18 +49,18 @@ namespace nidaqmx {
          * The DAQ device name.
          */
         std::string DAQDeviceName;
-        
+
         /**
          * The DAQ task name.
          */
         std::string DAQTaskName;
-           
+
         /**
          * The DAQ channels to acquire.
          */
         std::vector<std::string> DAQChannels;
-           
-        /** 
+
+        /**
          * The DAQ channel types.
          */
         std::vector<std::string> DAQChannelTypes;
@@ -75,12 +74,12 @@ namespace nidaqmx {
          * The minimum sample values for each channel
          */
         std::vector<double> DAQMinVals;
-           
-        /** 
+
+        /**
          * The maximum sample values for each channel
          */
         std::vector<double> DAQMaxVals;
-        
+
         /* ****** DAQ sampling attributes                       ****** */
         /**
          * The number of samples to acquire for each channel.
@@ -130,20 +129,23 @@ namespace nidaqmx {
          */
         std::vector<double> realValues;
     };
-    
+
     /**
+    * \defgroup icub_NIDAQmxTask NIDAQmxTask
+    * @ingroup icub_data_acquisition
+    *
     * \class NIDAQmxTask
-    * 
+    *
     * \brief The NIDAQmxTask is a C++ wrapper for the National Instruments proprietary NIDAQmx library.
     *
     *
     * \section intro_sec Description
-    * The NIDAQmxTask is a C++ wrapper for the National Instruments proprietary NIDAQmx library. 
-    * This library can be freely downloaded from the National Instruments website. 
+    * The NIDAQmxTask is a C++ wrapper for the National Instruments proprietary NIDAQmx library.
+    * This library can be freely downloaded from the National Instruments website.
     * It is available for the following operative systems:
     *     - Linux (NIDAQmxBase):  http://search.ni.com/nisearch/app/main/p/bot/no/ap/tech/lang/it/pg/1/sn/catnav:du/q/nidaqmxbase/
     *     - Windows (NIDAQmx):  http://search.ni.com/nisearch/app/main/p/bot/no/ap/tech/lang/it/pg/1/sn/catnav:du,n8%3A3478.41.181.5495/q/ni-daqmx/
-    * 
+    *
     * The typical NIDAQmx workflow is as follows:
     *     -# Create the DAQ task
     *         -# Create the data channels to acquire
@@ -152,14 +154,14 @@ namespace nidaqmx {
     *     -# Read the samples
     *     -# Stop the task
     *     -# Clear the task
-    * 
+    *
     * This library provides an interface to this NIDAQmx workflow by providing four methods:
     *     -# initialiseDAQTask()
     *     -# runDAQTask()
     *     -# stopDAQTask()
     *     -# clearDAQTask()
     *
-    * It is important to clear any task which is created using this API to free any allocated memory. 
+    * It is important to clear any task which is created using this API to free any allocated memory.
     *
     * The NIDAQmxTask is configured to perform continuous data acquisition.
     * NIDAQmx continuous data acquisition tasks work by sampling data at a given frequency.
@@ -174,10 +176,10 @@ namespace nidaqmx {
     *
     * \section lib_sec Libraries
     * This wrapper depends on different libraries depending on the operative system:
-    *     - Linux installations require libnidaqmxbase >= 3.7 (provided by the NIDAQmxBase software package) 
+    *     - Linux installations require libnidaqmxbase >= 3.7 (provided by the NIDAQmxBase software package)
     *     - Windows requires NIDAQmx.lib >= 9.7 (provided by the NIDAQmx software package).
-    * 
-    * 
+    *
+    *
     * \section supported_daq_cards Supported National Instruments DAQ cards
     * This module supports all the DAQ cards which are supported by the installed NIDAQmx (or NIDAQmxBase) library.
     * These are listed in the library Readme.
@@ -185,21 +187,21 @@ namespace nidaqmx {
     *
     * \section tested_os_sec Tested OS
     * Linux, Windows
-    * 
-    * 
+    *
+    *
     * \author Francesco Giovannini (francesco.giovannini@iit.it)
-    * 
+    *
     * \copyright
-    * 
+    *
     * Copyright (C) 2013 Francesco Giovannini, iCub Facility - Istituto Italiano di Tecnologia
-    * 
+    *
     * CopyPolicy: Released under the terms of the GNU GPL v2.0.
-    * 
+    *
     * This file can be edited at contrib/src/dataAcquisition/NIDAQmx/src/lib/include/NIDAQmxTask.h.
     */
     class NIDAQmxTask {
         private:
-            /* ************************************************************ */ 
+            /* ************************************************************ */
             /* ******* DAQ task attributes                          ******* */
             /**
              * The DAQ Task handle.
@@ -211,7 +213,7 @@ namespace nidaqmx {
              * The DAQ device name.
              */
             std::string DAQDeviceName;
-            
+
             /**
              * The DAQ task configuration object.
              */
@@ -226,10 +228,10 @@ namespace nidaqmx {
              * The sensor calibration configuration object.
              */
             nidaqmx::NIDAQmxCalibrationConfig DAQCalibrationConfig;
-            /* ************************************************************ */ 
-          
+            /* ************************************************************ */
 
-            /* ************************************************************ */ 
+
+            /* ************************************************************ */
             /* ******* Conversion maps.                             ******* */
             /**
              * The DAQ Channel type map.
@@ -241,7 +243,7 @@ namespace nidaqmx {
              * Maps the string input parameters to the corresponding NIDAQmx integer constants.
              */
             std::map<std::string, int> terminalConfigs;
-            /* ************************************************************ */ 
+            /* ************************************************************ */
 
         public:
             /**
@@ -254,8 +256,8 @@ namespace nidaqmx {
              * Default destructor.
              */
 //            ~NIDAQmxTask(void);
-        
-            
+
+
             /* ************************************************************ */
             /* ******* Run the task.                                ******* */
             /**
@@ -279,7 +281,7 @@ namespace nidaqmx {
              * Clear the DAQ task and delete any dynamically allocated memory associated with it.
              */
             bool clearDAQTask(void);
-            /* ************************************************************ */  
+            /* ************************************************************ */
 
         private:
             /* ************************************************************ */
@@ -289,7 +291,7 @@ namespace nidaqmx {
              */
             bool createDAQTask(void);
 
-            /** 
+            /**
              * Create the DAQ channels.
              */
             bool createDAQChannels(void);
@@ -314,14 +316,14 @@ namespace nidaqmx {
 
             /**
              * Error handling done sensibly.
-             * This method is called to check the error codes returned by NIDAQmx C api functions. 
+             * This method is called to check the error codes returned by NIDAQmx C api functions.
              * \param i_errorCode The error code returned by the called function.
              */
             bool errorCheck(int i_errorCode);
             /* ************************************************************ */
 
 
-            /* ************************************************************ */  
+            /* ************************************************************ */
             /* ******* Generate the conversion maps for NIDAQmx constants.  */
             /**
              * Generate the maps used by this library.

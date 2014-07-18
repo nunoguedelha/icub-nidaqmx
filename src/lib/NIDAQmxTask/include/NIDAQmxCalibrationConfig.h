@@ -1,8 +1,8 @@
-/* 
+/*
  * Copyright (C) 2013 Francesco Giovannini, iCub Facility - Istituto Italiano di Tecnologia
  * Authors: Francesco Giovannini
  * email:   francesco.giovannini@iit.it
- * website: www.robotcub.org 
+ * website: www.robotcub.org
  * Permission is granted to copy, distribute, and/or modify this program
  * under the terms of the GNU General Public License, version 2 or any
  * later version published by the Free Software Foundation.
@@ -18,7 +18,6 @@
 
 
 /**
-* \defgroup icub_data_acquisition Data Acquisition 
 * @ingroup icub_data_acquisition
 */
 
@@ -33,7 +32,7 @@
 namespace nidaqmx {
     /**
     * \class NIDAQmxCalibrationConfig
-    * 
+    *
     * \brief The NIDAQmxCalibrationConfig is the configuration object for the sensor calibration.
     *
     *
@@ -44,20 +43,20 @@ namespace nidaqmx {
     *
     * The configuration of a NIDAQmxTask object is a fairly cumbersome taks.
     * This class was created to simplify the interface for the end-user while maintaining a most flexible functionality.
-    * 
+    *
     *
     * \section tested_os_sec Tested OS
     * Linux, Windows
-    * 
-    * 
+    *
+    *
     * \author Francesco Giovannini (francesco.giovannini@iit.it)
-    * 
+    *
     * \copyright
-    * 
+    *
     * Copyright (C) 2013 Francesco Giovannini, iCub Facility - Istituto Italiano di Tecnologia
-    * 
+    *
     * CopyPolicy: Released under the terms of the GNU GPL v2.0.
-    * 
+    *
     * This file can be edited at contrib/src/dataAcquisition/NIDAQmx/src/lib/include/NIDAQmxCalibrationConfig.h.
     */
     class NIDAQmxCalibrationConfig {

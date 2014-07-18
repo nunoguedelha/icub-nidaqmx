@@ -1,8 +1,8 @@
-/* 
+/*
  * Copyright (C) 2013 Francesco Giovannini, iCub Facility - Istituto Italiano di Tecnologia
  * Authors: Francesco Giovannini
  * email:   francesco.giovannini@iit.it
- * website: www.robotcub.org 
+ * website: www.robotcub.org
  * Permission is granted to copy, distribute, and/or modify this program
  * under the terms of the GNU General Public License, version 2 or any
  * later version published by the Free Software Foundation.
@@ -18,7 +18,6 @@
 
 
 /**
-* \defgroup icub_data_acquisition Data Acquisition 
 * @ingroup icub_data_acquisition
 */
 
@@ -31,13 +30,13 @@
 #define __NIDAQMXTYPEDEFS_H__
 
 namespace nidaqmx {
-    /* ************************************************************ */ 
+    /* ************************************************************ */
     /* ******* Typedefs                                     ******* */
     /**
      * The DoubleMatrix2D is a 2-dimensional matrix of doubles.
      */
     typedef std::vector<std::vector<double> > DoubleMatrix2D;
-    /* ************************************************************ */ 
+    /* ************************************************************ */
 }
 
 #endif

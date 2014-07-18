@@ -1,8 +1,8 @@
-/* 
+/*
  * Copyright (C) 2013 Francesco Giovannini, iCub Facility - Istituto Italiano di Tecnologia
  * Authors: Francesco Giovannini
  * email:   francesco.giovannini@iit.it
- * website: www.robotcub.org 
+ * website: www.robotcub.org
  * Permission is granted to copy, distribute, and/or modify this program
  * under the terms of the GNU General Public License, version 2 or any
  * later version published by the Free Software Foundation.
@@ -18,7 +18,6 @@
 
 
 /**
-* \defgroup icub_data_acquisition Data Acquisition 
 * @ingroup icub_data_acquisition
 */
 
@@ -32,11 +31,10 @@
 namespace nidaqmx {
     /**
     * \cond
-    * @ingroup icub_contrib_software
-    * \defgroup icub_NIDAQmxTask NIDAQmxTask
+    * @ingroup icub_NIDAQmxTask
     * \endcond
     * \class NIDAQmxTaskConfig
-    * 
+    *
     * \brief The NIDAQmxTaskConfig is the configuration object for the NIDAQmxTask.
     *
     *
@@ -46,42 +44,42 @@ namespace nidaqmx {
     *
     * The configuration of a NIDAQmxTask object is a fairly cumbersome taks.
     * This class was created to simplify the interface for the end-user while maintaining a most flexible functionality.
-    * 
+    *
     *
     * \section tested_os_sec Tested OS
     * Linux, Windows
-    * 
-    * 
+    *
+    *
     * \author Francesco Giovannini (francesco.giovannini@iit.it)
-    * 
+    *
     * \copyright
-    * 
+    *
     * Copyright (C) 2013 Francesco Giovannini, iCub Facility - Istituto Italiano di Tecnologia
-    * 
+    *
     * CopyPolicy: Released under the terms of the GNU GPL v2.0.
-    * 
+    *
     * This file can be edited at contrib/src/dataAcquisition/NIDAQmx/src/lib/include/NIDAQmxTaskConfig.h.
     */
     class NIDAQmxTaskConfig {
         private:
-            /* ************************************************************ */ 
+            /* ************************************************************ */
             /* ******* DAQ task attributes                          ******* */
             /**
              * The DAQ task name.
              */
             std::string DAQTaskName;
 
-            /** 
+            /**
              * The number of DAQ channels to acquire.
              */
             int DAQNChannels;
-           
+
             /**
              * The DAQ channels to acquire.
              */
             std::vector<std::string> DAQChannels;
-           
-            /** 
+
+            /**
              * The DAQ channel types.
              */
             std::vector<std::string> DAQChannelTypes;
@@ -95,18 +93,18 @@ namespace nidaqmx {
              * The minimum sample values for each channel
              */
             std::vector<double> DAQMinVals;
-           
-            /** 
+
+            /**
              * The maximum sample values for each channel
              */
             std::vector<double> DAQMaxVals;
             /* ************************************************************ */
-            
+
         public:
             /**
              * Default constructor.
              * \param aDAQTaskName The DAQ task name
-             * \param aDAqChannels The DAQ channels to acquire
+             * \param aDAQChannels The DAQ channels to acquire
              * \param aDAQChannelTypes The DAQ channel types
              * \param aDAQTerminalConfig The terminal configuration for each DAQ channel
              * \param aDAQMinVals The minimum sample values for each channel
@@ -117,7 +115,7 @@ namespace nidaqmx {
 
             /* ************************************************************ */
             /* ******* Getters.                                     ******* */
-            
+
             /**
              * Get the DAQ Task name.
              * \returns An std::string containing the DAQ Task name.
@@ -147,13 +145,13 @@ namespace nidaqmx {
              * \returns An std::vector<std::string> containing the DAQ terminal configurations.
              */
             std::vector<std::string> &getDAQTerminalConfig();
-            
+
             /**
              * Get the DAQ minimum sample values for each channel.
              * \returns An std::vector<double> containing the minimum sample values.
              */
             std::vector<double> &getDAQMinVals();
-            
+
             /**
              * Get the DAQ maximum sample values for each channel.
              * \returns An std::vector<double> containing the maximum sample values.
