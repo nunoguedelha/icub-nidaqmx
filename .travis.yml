@@ -14,6 +14,10 @@ env:
         - TRAVIS_BUILD_TYPE=Debug
         - TRAVIS_BUILD_TYPE=Release
 
+matrix:
+    allow_failures:
+        - os: linux
+
 cache: apt
 
 install:
