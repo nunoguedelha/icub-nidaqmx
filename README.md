@@ -20,4 +20,4 @@ Project Info
 ============
 
 ####Build Status
-[![Build Status](https://travis-ci.org/JoErNanO/icub-nidaqmx.svg?branch=master)](https://travis-ci.org/JoErNanO/icub-nidaqmx)
+[![Build Status](https://travis-ci.org/robotology/icub-nidaqmx.svg?branch=master)](https://travis-ci.org/robotology/icub-nidaqmx)
