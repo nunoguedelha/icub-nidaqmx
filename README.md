@@ -6,7 +6,7 @@ There is one iCub module which relies on a C++ wrapper of the NIDAQmx proprietar
 
 
 ##Documentation
-The documentation for the project modules can be found [here](http://joernano.github.io/icub-nidaqmx/doc/html/modules.html).
+The documentation for the project modules can be found [here](http://robotology.github.io/icub-nidaqmx/doc/html/modules.html).
 
 Altenatively you can generate the documentation locally by running:
 ```bash
