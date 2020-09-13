@@ -62,7 +62,7 @@ bool NIDAQmxReaderModule::configure(yarp::os::ResourceFinder &rf) {
     // Get resource finder and extract properties
     // Module attributes
     moduleName = rf.check("name", Value("NIDAQmxReader"), "The module name.").asString().c_str();
-    period = rf.check("period", 1.0).asDouble();
+    period = rf.check("period", Value(1.0)).asDouble();
     robotName = rf.check("robot", Value("icub"), "The robot name.").asString().c_str();
 
     // Open ports
@@ -128,9 +128,9 @@ bool NIDAQmxReaderModule::configure(yarp::os::ResourceFinder &rf) {
     Bottle &DAQSamplingConf = rf.findGroup("DAQSampling");
     if (!DAQSamplingConf.isNull()) {    // Check for parameter existence
        DAQTaskConfig.DAQSamplesPerChannel = DAQSamplingConf.check("samplesPerChannel", Value("1"), "The number of samples to read per channel.").asInt();
-       DAQTaskConfig.DAQSamplingRate = DAQSamplingConf.check("samplingRate", 20000, "The sampling rate in Hz.").asDouble();
-       DAQTaskConfig.DAQSamplingTimeout = DAQSamplingConf.check("timeout", 10, "The sampling timeout in ms.").asDouble();
-       DAQTaskConfig.DAQSamplingBufferSize = DAQSamplingConf.check("bufferSize", 100000, "The sampling buffer size.").asInt();
+       DAQTaskConfig.DAQSamplingRate = DAQSamplingConf.check("samplingRate", Value(20000), "The sampling rate in Hz.").asDouble();
+       DAQTaskConfig.DAQSamplingTimeout = DAQSamplingConf.check("timeout", Value(10), "The sampling timeout in ms.").asDouble();
+       DAQTaskConfig.DAQSamplingBufferSize = DAQSamplingConf.check("bufferSize", Value(100000), "The sampling buffer size.").asInt();
     } else {    // Can't find sampling configuration in ini file
         cout << moduleName << ": Could not find the sampling configuration details [DAQSampling] in the ini file provided. \n";
         cout << moduleName << ": Using default sampling configuration values. \n";

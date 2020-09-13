@@ -21,6 +21,7 @@
 #include <yarp/dev/all.h>
 
 #include "NIDAQmxReaderModule.h"
+#include <iostream>
 
 using namespace yarp::os;
 using namespace yarp::dev;
@@ -35,18 +36,24 @@ int main(int argc, char *argv[]) {
          return -1;
     }     
 
-    // Using modules
+    // Create the NI-DAQ reader module
     NIDAQmxReaderModule mod;
 
-    // Create resource finder
+    // Create and configure the resource finder
     ResourceFinder rf;
     rf.setVerbose();
     rf.setDefaultConfigFile("confNIDAQmxReader.ini");
     rf.setDefaultContext("NIDAQmxReader");
-    rf.configure("ICUB_ROOT", argc, argv);
+    rf.configure(argc, argv);
 
     // Configure and run module
-    mod.runModule(rf);
-
+    std::cout << "Configuring and starting module.\n";
+    // This calls configure(rf) and, upon success, the module execution begins with a call to updateModule()
+    if (!mod.runModule(rf)) {
+        std::cerr << "Error module did not start\n";
+    }
+  
+    std::cout << "Main returning..." << '\n';
     return 0;
 }
+
