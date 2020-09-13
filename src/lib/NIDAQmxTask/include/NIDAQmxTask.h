@@ -143,7 +143,7 @@ namespace nidaqmx {
     * The NIDAQmxTask is a C++ wrapper for the National Instruments proprietary NIDAQmx library.
     * This library can be freely downloaded from the National Instruments website.
     * It is available for the following operative systems:
-    *     - Linux (NIDAQmxBase):  http://search.ni.com/nisearch/app/main/p/bot/no/ap/tech/lang/it/pg/1/sn/catnav:du/q/nidaqmxbase/
+    *     - Linux (NIDAQmx):  http://search.ni.com/nisearch/app/main/p/bot/no/ap/tech/lang/it/pg/1/sn/catnav:du/q/nidaqmx/
     *     - Windows (NIDAQmx):  http://search.ni.com/nisearch/app/main/p/bot/no/ap/tech/lang/it/pg/1/sn/catnav:du,n8%3A3478.41.181.5495/q/ni-daqmx/
     *
     * The typical NIDAQmx workflow is as follows:
@@ -176,12 +176,12 @@ namespace nidaqmx {
     *
     * \section lib_sec Libraries
     * This wrapper depends on different libraries depending on the operative system:
-    *     - Linux installations require libnidaqmxbase >= 3.7 (provided by the NIDAQmxBase software package)
+    *     - Linux installations require libniDAQmx >= x.x (provided by the NIDAQmx software package)
     *     - Windows requires NIDAQmx.lib >= 9.7 (provided by the NIDAQmx software package).
     *
     *
     * \section supported_daq_cards Supported National Instruments DAQ cards
-    * This module supports all the DAQ cards which are supported by the installed NIDAQmx (or NIDAQmxBase) library.
+    * This module supports all the DAQ cards which are supported by the installed NIDAQmx library.
     * These are listed in the library Readme.
     *
     *

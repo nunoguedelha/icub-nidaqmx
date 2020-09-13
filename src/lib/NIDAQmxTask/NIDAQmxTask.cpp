@@ -1,8 +1,8 @@
-/* 
+/*
  * Copyright (C) 2013 Francesco Giovannini, iCub Facility - Istituto Italiano di Tecnologia
  * Authors: Francesco Giovannini
  * email:   francesco.giovannini@iit.it
- * website: www.robotcub.org 
+ * website: www.robotcub.org
  * Permission is granted to copy, distribute, and/or modify this program
  * under the terms of the GNU General Public License, version 2 or any
  * later version published by the Free Software Foundation.
@@ -31,7 +31,7 @@ using std::string;
 
 /* *********************************************************************************************************************** */
 /* ******* Default constructor.                                             ********************************************** */
-NIDAQmxTask::NIDAQmxTask(const nidaqmx::NIDAQmxTaskParams &aDAQTaskParams) 
+NIDAQmxTask::NIDAQmxTask(const nidaqmx::NIDAQmxTaskParams &aDAQTaskParams)
     : DAQDeviceName(aDAQTaskParams.DAQDeviceName)
       , DAQTaskConfig(aDAQTaskParams.DAQTaskName, aDAQTaskParams.DAQChannels, aDAQTaskParams.DAQChannelTypes,
             aDAQTaskParams.DAQTerminalConfig, aDAQTaskParams.DAQMinVals, aDAQTaskParams.DAQMaxVals)
@@ -84,17 +84,17 @@ bool NIDAQmxTask::stopDAQTask(void) {
         cout << "NIDAQmxTask: Stopping the DAQ Task. \n";
 
 #ifdef __linux__
-        if(!errorCheck(DAQmxBaseStopTask(DAQTaskHandle))) {
+        if(!errorCheck(DAQmxStopTask(DAQTaskHandle))) {
             return false;
         }
-//        DAQmxBaseClearTask(DAQTaskHandle);
+//        DAQmxClearTask(DAQTaskHandle);
 #elif _WIN32
         if (!errorCheck(DAQmxStopTask(DAQTaskHandle))) {
             return false;
         }
 //        DAQmxClearTask(DAQTaskHandle);
 #endif
-        
+
         cout << "NIDAQmxTask: DAQ Task stopped. \n";
 
         return true;
@@ -104,7 +104,7 @@ bool NIDAQmxTask::stopDAQTask(void) {
 }
 /* *********************************************************************************************************************** */
 
-            
+
 /* *********************************************************************************************************************** */
 /* ******* Clear the DAQ Task.                                               ********************************************** */
 bool NIDAQmxTask::clearDAQTask(void) {
@@ -113,8 +113,8 @@ bool NIDAQmxTask::clearDAQTask(void) {
         cout << "NIDAQmxTask: Clearing the DAQ Task. \n";
 
 #ifdef __linux__
-//        DAQmxBaseStopTask(DAQTaskHandle);
-        if (!errorCheck(DAQmxBaseClearTask(DAQTaskHandle))) {
+//        DAQmxStopTask(DAQTaskHandle);
+        if (!errorCheck(DAQmxClearTask(DAQTaskHandle))) {
             return false;
         }
 #elif _WIN32
@@ -123,7 +123,7 @@ bool NIDAQmxTask::clearDAQTask(void) {
             return false;
         }
 #endif
-        
+
         cout << "NIDAQmxTask: DAQ Task cleared. \n";
 
         return true;
@@ -141,7 +141,7 @@ bool NIDAQmxTask::createDAQTask(void) {
     cout << "NIDAQmxTask: Creating the DAQ task. \n";
 
 #ifdef __linux__
-    if (!errorCheck(DAQmxBaseCreateTask(DAQTaskConfig.getDAQTaskName().c_str(), &DAQTaskHandle))) {
+    if (!errorCheck(DAQmxCreateTask(DAQTaskConfig.getDAQTaskName().c_str(), &DAQTaskHandle))) {
         return false;
     }
 #elif _WIN32
@@ -165,13 +165,13 @@ bool NIDAQmxTask::createDAQTask(void) {
     int nTotSamples = DAQSamplingConfig.getDAQSamplesPerChannel() * DAQTaskConfig.getDAQChannels().size();        // Total number of samples
 
 #ifdef __linux__
-    if (!errorCheck(DAQmxBaseCfgSampClkTiming(DAQTaskHandle, "OnboardClock", DAQSamplingConfig.getDAQSamplingRate(), 
+    if (!errorCheck(DAQmxCfgSampClkTiming(DAQTaskHandle, "OnboardClock", DAQSamplingConfig.getDAQSamplingRate(),
 //            DAQmx_Val_Rising, DAQmx_Val_FiniteSamps, DAQSamplingConfig.getDAQSamplesPerChannel()))) {
             DAQmx_Val_Rising, DAQmx_Val_ContSamps, DAQSamplingConfig.getDAQSamplesPerChannel()))) {
         return false;
     }
 #elif _WIN32
-    if (!errorCheck(DAQmxCfgSampClkTiming(DAQTaskHandle, "OnBoardClock", DAQSamplingConfig.getDAQSamplingRate(), 
+    if (!errorCheck(DAQmxCfgSampClkTiming(DAQTaskHandle, "OnBoardClock", DAQSamplingConfig.getDAQSamplingRate(),
 //            DAQmx_Val_Rising, DAQmx_Val_FiniteSamps, DAQSamplingConfig.getDAQSamplesPerChannel()))) {
             DAQmx_Val_Rising, DAQmx_Val_ContSamps, DAQSamplingConfig.getDAQSamplesPerChannel()))) {
         return false;
@@ -181,9 +181,9 @@ bool NIDAQmxTask::createDAQTask(void) {
     cout << "NIDAQmxTask: Sampling rate and timing defined. \n";
 
 
-//    if (!errorCheck(DAQmxBaseCfgInputBuffer(DAQTaskHandle, nTotSamples*2))) {
+//    if (!errorCheck(DAQmxCfgInputBuffer(DAQTaskHandle, nTotSamples*2))) {
 #ifdef __linux__
-    if (!errorCheck(DAQmxBaseCfgInputBuffer(DAQTaskHandle, DAQSamplingConfig.getDAQSamplingBufferSize()))) {
+    if (!errorCheck(DAQmxCfgInputBuffer(DAQTaskHandle, DAQSamplingConfig.getDAQSamplingBufferSize()))) {
         return false;
     }
 #elif _WIN32
@@ -215,7 +215,7 @@ bool NIDAQmxTask::createDAQChannels(void) {
         channelName.str(std::string());     // Clear stringstream
         channelName << DAQDeviceName << "/" << DAQTaskConfig.getDAQChannels()[i];      // Construct the channel name
         cout << "NIDAQmxTask: Creating DAQ channel - " << channelName.str()  << ". \n";
-        
+
         // Find channel type
         map<string, int>::iterator curVal = channelTypes.find(DAQTaskConfig.getDAQChannelTypes()[i]);
         if (curVal != channelTypes.end()) {       // Current channel type exists
@@ -238,9 +238,9 @@ bool NIDAQmxTask::createDAQChannels(void) {
             result = false;
             break;
         }
-        
+
 #ifdef __linux__
-        if(!errorCheck(DAQmxBaseCreateAIVoltageChan(DAQTaskHandle, channelName.str().c_str(), "", terminalConfig,
+        if(!errorCheck(DAQmxCreateAIVoltageChan(DAQTaskHandle, channelName.str().c_str(), "", terminalConfig,
                     DAQTaskConfig.getDAQMinVals()[i], DAQTaskConfig.getDAQMaxVals()[i], channelType, NULL))) {
             result = false;
             break;
@@ -267,7 +267,7 @@ bool NIDAQmxTask::startDAQTask(void) {
 
     string errMsg = "NIDAQmxTask: Could not start the DAQ task. \n";
 #ifdef __linux__
-    if(!errorCheck(DAQmxBaseStartTask(DAQTaskHandle))) {
+    if(!errorCheck(DAQmxStartTask(DAQTaskHandle))) {
         cerr << errMsg;
         return false;
     }
@@ -290,7 +290,7 @@ bool NIDAQmxTask::startDAQTask(void) {
 bool NIDAQmxTask::readAnalogValues(std::vector<double> &i_analog) {
     int nTotSamples = DAQSamplingConfig.getDAQSamplesPerChannel() * DAQTaskConfig.getDAQChannels().size();        // Total number of samples
     int bufSize = nTotSamples * 2;
-  
+
     // Read samples
     cout << "NIDAQmxTask: Reading samples. \n";
     //double data[bufSize];
@@ -298,17 +298,17 @@ bool NIDAQmxTask::readAnalogValues(std::vector<double> &i_analog) {
     int32 readSamples = 0;
 
 #ifdef __linux__
-    if(!errorCheck(DAQmxBaseReadAnalogF64(DAQTaskHandle, -1, DAQSamplingConfig.getDAQSamplingTimeout(), DAQmx_Val_GroupByScanNumber, 
+    if(!errorCheck(DAQmxReadAnalogF64(DAQTaskHandle, -1, DAQSamplingConfig.getDAQSamplingTimeout(), DAQmx_Val_GroupByScanNumber,
                 data, bufSize, &readSamples, NULL))) {
         return false;
     }
 #elif _WIN32
-    if(!errorCheck(DAQmxReadAnalogF64(DAQTaskHandle, -1, DAQSamplingConfig.getDAQSamplingTimeout(), DAQmx_Val_GroupByScanNumber, 
+    if(!errorCheck(DAQmxReadAnalogF64(DAQTaskHandle, -1, DAQSamplingConfig.getDAQSamplingTimeout(), DAQmx_Val_GroupByScanNumber,
                 data, bufSize/2, &readSamples, NULL))) {
         return false;
     }
 #endif
-    
+
     // Store data
     int totReadVals = readSamples * DAQTaskConfig.getDAQChannels().size();
     //    // Resize output vector
@@ -317,7 +317,7 @@ bool NIDAQmxTask::readAnalogValues(std::vector<double> &i_analog) {
     for (int i = 0; i < totReadVals; ++i) {
         i_analog[i] = data[i];
 //		i_analog.push_back(data[i]);
-    
+
 #if 0
         cout << i_analog[i] << " ";
         if ((i+1) % 6 == 0) {
@@ -378,7 +378,7 @@ bool NIDAQmxTask::errorCheck(int i_errorCode) {
         char errorBuff[2048] = {'\0'};
 
 #ifdef __linux__
-        DAQmxBaseGetExtendedErrorInfo(errorBuff, 2048);
+        DAQmxGetExtendedErrorInfo(errorBuff, 2048);
 #elif _WIN32
         DAQmxGetExtendedErrorInfo(errorBuff, 2048);
 #endif

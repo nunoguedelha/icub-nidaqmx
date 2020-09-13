@@ -1,8 +1,8 @@
-/* 
+/*
  * Copyright (C) 2013 Francesco Giovannini, iCub Facility - Istituto Italiano di Tecnologia
  * Authors: Francesco Giovannini
  * email:   francesco.giovannini@iit.it
- * website: www.robotcub.org 
+ * website: www.robotcub.org
  * Permission is granted to copy, distribute, and/or modify this program
  * under the terms of the GNU General Public License, version 2 or any
  * later version published by the Free Software Foundation.
@@ -21,9 +21,9 @@
 /**
  * @ingroup icub_data_acquisition
  * \defgroup icub_NIDAQmxReader NIDAQmxReader
- * 
+ *
  * The NIDAQmxReader is a module which acquires data from a National Instruments data acquisition (DAQ) card and outputs it on two YARP ports.
- * 
+ *
  * \section intro_sec Description
  * This module relies on the NIDAQmxTask C++ wrapper for the National Instruments proprietary NIDAQmx library.
  * It invokes the API methods defined in the NIDAQmxTask API to initialise, run, stop and clear DAQ tasks.
@@ -32,7 +32,7 @@
  * \image html DAQSystemArch.png "NIDAQmx System architecture."
  * \image latex DAQSystemArch.pdf "NIDAQmx System architecture." width=6cm
  *
- * 
+ *
  * \section conf_file_sec Configuration Files
  * The DAQ task configuration is fairly cumbersome and requires many parameters.
  * The NIDAQmxReader therefore takes a mandatory configuration file <b>confNIDAQmxReader.ini</b> which must be placed in its context (NIDAQmxReader).
@@ -46,7 +46,7 @@
  * This calibration data is <b>unique</b> to each sensor.
  * Acquiring data from a sensor configured using calibration data from another sensor will inevitably result into meaningless, wrong data.
  *
- * 
+ *
  * \section sampling_sec Sampling Explained
  * The module launches a DAQ task with the given sampling rate <i>samplingRate</i>.
  * Once started, the task fills a circular buffer of size <i>bufferSize</i> with the acquired samples.
@@ -59,19 +59,19 @@
  *     - <i>samplingRate</i>
  *     - <i>samplesPerChannel</i>
  *
- * 
+ *
  * \section lib_sec Libraries
  * The NIDAQmxReader depends on standard YARP libraries.
- * 
+ *
  * The module also depends on the NIDAQmxTask C++ wrapper for the NIDAQmx library.
- * 
- * 
+ *
+ *
  * \section parameters_sec Parameters
  * <b>Command-line Parameters</b>
  *     - <i>name</i>: The module name.
  *     - <i>period</i>: The module period in seconds.
  *     - <i>robot</i>: The robot on which the module will run.
- *  
+ *
  * <b>Configuration File Parameters </b>
  *     - <i>name</i>: The module name.
  *     - <i>period</i>: The module period in seconds.
@@ -89,32 +89,32 @@
  *     - <i>bufferSize</i>: The sampling buffer size.
  *     - <i>scales</i>: The calibration scales.
  *     - <i>calibMatrix</i>: The calibration matrix.
- *  
- * 
+ *
+ *
  * \section portsc_sec Ports Created
  * <b>Output ports </b>
  * The NIDAQmxReader creates the following output ports:
  *     - /NIDAQmxReader/data/analog:o [yarp::sig::Vector]  [default carrier:tcp]: This port outputs the analog sensor values (Volts, Amps, etc).
  *     - /NIDAQmxReader/data/real:o [yarp::sig::Vector]  [default carrier:tcp]: This port outputs the real sensor values (Newtons, Newton millimeters, etc).
- * 
- * 
+ *
+ *
  * \section supported_daq_cards Supported National Instruments DAQ cards
- * This module supports all the DAQ cards which are supported by the installed NIDAQmx (or NIDAQmxBase) library.
+ * This module supports all the DAQ cards which are supported by the installed NIDAQmx library.
  * These are listed in the library Readme.
  *
  *
  * \section tested_os_sec Tested OS
  * Linux, Windows
- * 
- * 
+ *
+ *
  * \author Francesco Giovannini (francesco.giovannini@iit.it)
- * 
+ *
  * \copyright
- * 
+ *
  * Copyright (C) 2013 Francesco Giovannini, iCub Facility - Istituto Italiano di Tecnologia
- * 
+ *
  * CopyPolicy: Released under the terms of the GNU GPL v2.0.
- * 
+ *
  * This file can be edited at contrib/src/dataAcquisition/NIDAQmx/src/modules/include/NIDAQmxReaderModule.h.
  */
 
@@ -164,26 +164,26 @@ class NIDAQmxReaderModule : public yarp::os::RFModule {
          * The NIDAQmxTAsk object.
          */
         nidaqmx::NIDAQmxTask *DAQTask;
-        
+
         /* ****** Ports                                         ****** */
-        /** 
-         * Output port for sensor analog values. 
+        /**
+         * Output port for sensor analog values.
          */
         yarp::os::BufferedPort<yarp::sig::Vector> portNIDAQmxReaderOutAnalog;
 
-        /** 
+        /**
          * Output port for sensor real values.
          */
         yarp::os::BufferedPort<yarp::sig::Vector> portNIDAQmxReaderOutReal;
 
-        /** 
-         * The port timestamp. 
+        /**
+         * The port timestamp.
          */
         yarp::os::Stamp portStamp;
 
         /* ****** Debug attributes                              ****** */
         std::string dbgTag;
-        
+
     public:
         /**
          * Default constructor.
@@ -203,4 +203,3 @@ class NIDAQmxReaderModule : public yarp::os::RFModule {
 };
 
 #endif
-
