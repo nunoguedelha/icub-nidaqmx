@@ -23,7 +23,7 @@ list(APPEND NIDAQMX_ROOT "C:/Program Files/National Instruments/NI-DAQ/DAQmx ANS
 
 # Find installed library using CMake functions
 find_library(LIBNIDAQMX_LIBRARY 
-			NAMES "NIDAQmx"
+			NAMES "libnidaqmx"
             PATHS ${NIDAQMX_ROOT}
             PATH_SUFFIXES "lib/msvc")
             

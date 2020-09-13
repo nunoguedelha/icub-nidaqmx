@@ -29,7 +29,7 @@
 #define __NIDAQMXCONSTANTS_H__
 
 #ifdef __linux__
-    #include <NIDAQmxBase.h>
+    #include <NIDAQmx.h>
 #elif _WIN32
     #include <NIDAQmx.h>
 #endif
