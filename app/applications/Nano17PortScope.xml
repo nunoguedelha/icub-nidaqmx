@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<application>
+<name>Nano17 Port Scope</name>
+<dependencies>
+</dependencies>
+
+
+<!-- ****************************************************************************************************************** -->
+<!-- ******************************************************************************** -->
+<!-- ** Port Scope                                                                    -->
+    <module>
+        <name>yarpscope</name>
+        <node>localhost</node>
+        <parameters>--context NIDAQmxReader --xml Nano17PortScopeConf.xml</parameters>
+        <workdir>/home/isaac/isaac/icub-nidaqmx/app/data</workdir>
+        <tag>Nano17 Port Scope</tag>
+    </module>
+<!-- ****************************************************************************************************************** -->
+
+    <module>
+        <name>NIDAQmxReader</name>
+        <node>localhost</node>
+        <parameters></parameters>
+        <stdio></stdio>
+        <tag>NIDAQmxReader</tag>
+    </module>
+
+</application>
